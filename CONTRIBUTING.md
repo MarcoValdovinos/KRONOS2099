@@ -1,3 +1,7 @@
+# NOTA BIEN - Léela antes de contribuir
+
+Ver NOTA-BIEN.md y docs/legal/NOTA-BIEN-KRONOS.md, inspirada en IETF Note Well.
+
 # Cómo ayudar en KRONOS2099 • Sin esperar nada a cambio
 
 Gracias por querer ayudar. Este proyecto es de la comunidad, aunque el dueño de la visión es Valdovinos.
