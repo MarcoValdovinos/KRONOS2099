@@ -1,5 +1,12 @@
 <div align="center">
 
+> ## ❤️ AYUDAR A LA COMUNIDAD • SIN ESPERAR NADA A CAMBIO
+> Si estás atorado en Termux o GitHub, aquí te ayudamos. Si quieres ayudar a otro, bienvenido.
+> Lee [GUIA-TERMUX-PARA-NOVATOS](docs/comunidad/GUIA-TERMUX-PARA-NOVATOS.md) y [CONTRIBUTING](CONTRIBUTING.md) • Abre un Issue, pregunta, comparte, mejora.
+> Todos empezamos desde cero. — Valdovinos • KRONOS2099
+
+
+
 # ARKHE-ZERO
 ### SYCRO-VALDOVINOS • KRONOS2099
 **Infrastructure Cryptographic for Human-AI Co-Authorship**
