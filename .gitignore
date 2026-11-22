@@ -1,0 +1,11 @@
+.env
+*.key
+*.pem
+*.secret
+.ssh/
+.secrets/
+.arkh-wallet.json
+*KEYS-BACKUP*
+node_modules/
+__pycache__/
+storage/
