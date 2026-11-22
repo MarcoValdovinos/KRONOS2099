@@ -1,0 +1,31 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ARKHE-ZERO • Verificar</title>
+<style>body{background:#050810;color:#e8f6ff;font-family:system-ui;padding:18px;max-width:720px;margin:auto}
+h1{color:#00f0ff;margin:0} .bar{height:14px;display:flex;border-radius:99px;overflow:hidden;margin:12px 0}
+.h{width:51%;background:#00f0ff;color:#000;font-weight:800;text-align:center;font-size:12px;line-height:14px}
+.ai{width:49%;background:#a855f7;color:#fff;font-weight:800;text-align:center;font-size:12px;line-height:14px}
+.card{background:#0b1226;border:1px solid #1e2a4a;border-radius:16px;padding:16px;margin-top:14px}
+input,button{width:100%;padding:12px;border-radius:12px;border:1px solid #223;margin-top:10px}
+button{background:#00f0ff;color:#000;font-weight:800;border:0}
+pre{white-space:pre-wrap;word-break:break-all;background:#000;padding:12px;border-radius:12px}
+small{color:#9ab}</style></head><body>
+<h1>ARKHE-ZERO</h1><p>KRONOS2099 • Verificación de legado • Toluca-Global</p>
+<div class="bar"><div class="h">51% HUMANO</div><div class="ai">49% IA</div></div>
+<div class="card"><b>1. Elige tu archivo</b><input type="file" id="f"><button onclick="verificar()">VERIFICAR AHORA</button><small>Todo se calcula en tu celular, tu archivo no se sube a ningún servidor.</small></div>
+<div class="card" id="out" style="display:none"><b>FOLIO</b><h2 id="folio" style="color:#ffd700"></h2><b>SHA-256</b><pre id="hash"></pre><p id="meta"></p><img id="qr" style="background:#fff;padding:8px;border-radius:12px"><br><br>
+<button onclick="copiar()">COPIAR HASH</button><button onclick="descargar()">DESCARGAR RECIBO JSON</button></div>
+<script>let D={};
+async function verificar(){const f=document.getElementById('f').files[0];if(!f)return alert('Elige un archivo primero');
+const buf=await f.arrayBuffer();const h=await crypto.subtle.digest('SHA-256',buf);
+const hex=[...new Uint8Array(h)].map(b=>b.toString(16).padStart(2,'0')).join('');
+const fecha=new Date().toISOString().slice(0,10).replaceAll('-','');
+const folio='KRONOS-'+fecha+'-'+hex.slice(0,8).toUpperCase();
+D={folio,sha256:hex,archivo:f.name,tamano:f.size,fecha:new Date().toISOString(),autor:'Valdovinos',modelo:'51% Humano / 49% IA'};
+document.getElementById('out').style.display='block';
+document.getElementById('folio').innerText=folio;
+document.getElementById('hash').innerText=hex;
+document.getElementById('meta').innerText='Archivo: '+f.name+' • Tamaño: '+f.size+' bytes • Verificado: '+D.fecha;
+document.getElementById('qr').src='https://api.qrserver.com/v1/create-qr-code/?size=180x180&data='+encodeURIComponent(folio+'|'+hex);}
+function copiar(){navigator.clipboard.writeText(D.sha256);alert('Hash copiado');}
+function descargar(){const b=new Blob([JSON.stringify(D,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=D.folio+'.json';a.click();}
+</script><p><small>VALDOVINOS • Cada verificación es co-firmada 51/49</small></p></body></html>
