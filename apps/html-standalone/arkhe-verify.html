@@ -1,34 +1,55 @@
 <!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ARKHE-ZERO • Verificar</title>
-<style>body{background:#050810;color:#e8f6ff;font-family:system-ui;padding:18px;max-width:720px;margin:auto}
-h1{color:#00f0ff;margin:0} .bar{height:14px;display:flex;border-radius:99px;overflow:hidden;margin:12px 0}
-.h{width:51%;background:#00f0ff;color:#000;font-weight:800;text-align:center;font-size:12px;line-height:14px}
-.ai{width:49%;background:#a855f7;color:#fff;font-weight:800;text-align:center;font-size:12px;line-height:14px}
-.card{background:#0b1226;border:1px solid #1e2a4a;border-radius:16px;padding:16px;margin-top:14px}
+<title>ARKHE-ZERO • Verificar V3</title>
+<style>
+*{box-sizing:border-box} body{background:#050810;color:#fff;font-family:system-ui;margin:0;padding:14px}
+.wrap{max-width:680px;margin:auto} h1{color:#00f0ff;margin:0} .bar{height:14px;display:flex;border-radius:99px;overflow:hidden;margin:12px 0;border:1px solid #333}
+.h{width:51%;background:#00f0ff;color:#000;font-weight:800;text-align:center;font-size:11px;line-height:14px}
+.ai{width:49%;background:#a855f7;color:#fff;font-weight:800;text-align:center;font-size:11px;line-height:14px}
+.card{background:#0b1226;border:1px solid #2a2a4a;border-radius:16px;padding:16px;margin-top:14px}
 input,button{width:100%;padding:12px;border-radius:12px;border:1px solid #223;margin-top:10px}
 button{background:#00f0ff;color:#000;font-weight:800;border:0} button.gold{background:#ffd700}
-pre{white-space:pre-wrap;word-break:break-all;background:#000;padding:12px;border-radius:12px}
-small{color:#9ab}</style></head><body>
-<h1>ARKHE-ZERO</h1><p>KRONOS2099 • Verificación de legado • Toluca-Global</p>
+.fila{background:rgba(0,0,0,.35);border:1px solid #2a2a4a;border-radius:12px;padding:10px;margin:10px 0}
+.etiqueta{color:#ffd700;font-size:11px;letter-spacing:2px;font-weight:800}
+.valor{word-break:break-all;font-size:14px;line-height:1.4;margin-top:4px}
+.huella{display:grid;grid-template-columns:repeat(8,1fr);gap:3px;margin-top:8px}
+.sello{width:140px;height:140px;border-radius:50%;background:conic-gradient(from 0deg,#00f0ff,#a855f7,#ffd700,#ff4d6d,#00f0ff);display:flex;align-items:center;justify-content:center;animation:girar 7s linear infinite;padding:6px;margin:14px auto}
+@keyframes girar{to{transform:rotate(360deg)}}
+.sello-in{width:110px;height:110px;border-radius:50%;background:#050810;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;font-size:11px;border:2px dashed gold}
+.firma-box{text-align:center;background:rgba(0,0,0,.45);border:1px solid #d4af37;border-radius:16px;padding:14px}
+.firma-box svg{width:280px;max-width:100%;filter:drop-shadow(0 0 10px gold)}
+small{color:#9ab}
+</style></head><body><div class="wrap">
+<h1>ARKHE-ZERO</h1><p>KRONOS2099 • Verificación V3 • Toluca-Global</p>
 <div class="bar"><div class="h">51% HUMANO</div><div class="ai">49% IA</div></div>
-<div class="card"><b>1. Elige tu archivo</b><input type="file" id="f"><button onclick="verificar()">VERIFICAR AHORA</button><small>Todo se calcula en tu celular, tu archivo no se sube a ningún servidor.</small></div>
-<div class="card" id="out" style="display:none"><b>FOLIO</b><h2 id="folio" style="color:#ffd700"></h2><b>SHA-256</b><pre id="hash"></pre><p id="meta"></p><img id="qr" style="background:#fff;padding:8px;border-radius:12px"><br><br>
-<button class="gold" onclick="descargarCertificado()">DESCARGAR CERTIFICADO BONITO • SELLO CROMÁTICO</button>
-<button onclick="descargarJson()">DESCARGAR JSON PARA MÁQUINAS</button></div>
-<script>let D={};
+<div class="card"><b>Elige tu archivo</b><input type="file" id="f"><button onclick="verificar()">VERIFICAR AHORA</button><small>Todo en tu celular, sin subir tu archivo. Huella offline, sin QR de internet.</small></div>
+<div class="card" id="out" style="display:none">
+<div class="fila"><div class="etiqueta">FOLIO</div><div class="valor" id="folio" style="color:#ffd700;font-size:18px;font-weight:800"></div></div>
+<div class="fila"><div class="etiqueta">SHA-256</div><div class="valor" id="hash"></div></div>
+<div class="fila"><div class="etiqueta">ARCHIVO</div><div class="valor" id="meta"></div></div>
+<div class="fila"><div class="etiqueta">HUELLA VISUAL OFFLINE</div><div class="huella" id="huella"></div></div>
+<div class="sello"><div class="sello-in"><b>ARKHE-ZERO</b>VERIFICADO<br>51 / 49<br>SELLO CROMÁTICO</div></div>
+<div class="firma-box"><div class="etiqueta">FIRMA DEL SOBERANO</div><div id="firma"></div><small>Valdovinos • Dueño de la visión</small></div><br>
+<button class="gold" onclick="descargarCertificado()">DESCARGAR CERTIFICADO BONITO V3</button>
+<button onclick="descargarJson()">DESCARGAR JSON</button>
+</div></div>
+<script>
+let D={}; const PAL=["#00f0ff","#ffd700","#a855f7","#ff4d6d","#00ff88","#ffffff"];
+const FIRMA=[STRIPPED 771 bytes];
+function huellaHTML(hex){return hex.slice(0,64).split('').map(c=>`<div style="background:${PAL[parseInt(c,16)%PAL.length]};height:18px;border-radius:3px"></div>`).join('');}
 async function verificar(){const f=document.getElementById('f').files[0];if(!f)return alert('Elige un archivo primero');
 const buf=await f.arrayBuffer();const h=await crypto.subtle.digest('SHA-256',buf);
 const hex=[...new Uint8Array(h)].map(b=>b.toString(16).padStart(2,'0')).join('');
 const fecha=new Date().toISOString().slice(0,10).replaceAll('-','');
 const folio='KRONOS-'+fecha+'-'+hex.slice(0,8).toUpperCase();
-D={folio,sha256:hex,archivo:f.name,tamano:f.size,fecha:new Date().toISOString(),autor:'Valdovinos',modelo:'51% Humano / 49% IA'};
+D={folio,sha256:hex,archivo:f.name,tamano:f.size,fecha:new Date().toISOString(),autor:'Valdovinos'};
 document.getElementById('out').style.display='block';
 document.getElementById('folio').innerText=folio;
 document.getElementById('hash').innerText=hex;
-document.getElementById('meta').innerText='Archivo: '+f.name+' • Tamaño: '+f.size+' bytes • Verificado: '+D.fecha;
-document.getElementById('qr').src='https://api.qrserver.com/v1/create-qr-code/?size=180x180&data='+encodeURIComponent(folio+'|'+hex);}
+document.getElementById('meta').innerText=f.name+' • '+f.size+' bytes • '+D.fecha;
+document.getElementById('huella').innerHTML=huellaHTML(hex);
+document.getElementById('firma').innerHTML=FIRMA;}
 function descargarJson(){const b=new Blob([JSON.stringify(D,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=D.folio+'.json';a.click();}
 function descargarCertificado(){
-const cert=`<!doctype html><html lang="es"><head><meta charset="utf-8"><title>${D.folio}</title><style>body{background:#0a0a12;font-family:system-ui;display:flex;justify-content:center;padding:20px}.cert{background:#fdf6e3;color:#111;width:100%;max-width:700px;border:4px solid #d4af37;border-radius:18px;padding:28px}h1{text-align:center}h2{color:#b8860b;text-align:center;border-top:2px solid #d4af37;border-bottom:2px solid #d4af37;padding:10px}table{width:100%}td{padding:8px;border-bottom:1px solid #e8d9a0;word-break:break-all}.sello-wrap{display:flex;justify-content:center;gap:20px;align-items:center}.sello{width:150px;height:150px;border-radius:50%;background:conic-gradient(from 0deg,#00f0ff,#a855f7,#ffd700,#ff4d6d,#00f0ff);display:flex;align-items:center;justify-content:center;animation:girar 8s linear infinite;padding:6px}@keyframes girar{to{transform:rotate(360deg)}}.sello-in{width:118px;height:118px;border-radius:50%;background:#111;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;font-size:11px;border:2px dashed gold}.qr{background:#fff;padding:8px;border-radius:12px}</style></head><body><div class="cert"><p style="text-align:center"><small>KRONOS2099 • ARKHE-ZERO • TOLUCA-GLOBAL</small></p><h1>CERTIFICADO DE VERIFICACIÓN</h1><h2>${D.folio}</h2><table><tr><td>Archivo</td><td>${D.archivo}</td></tr><tr><td>SHA-256</td><td>${D.sha256}</td></tr><tr><td>Tamaño</td><td>${D.tamano} bytes</td></tr><tr><td>Fecha</td><td>${D.fecha}</td></tr><tr><td>Autor</td><td>Valdovinos</td></tr><tr><td>Modelo</td><td>51% Humano / 49% IA</td></tr></table><div class="sello-wrap"><div class="sello"><div class="sello-in"><b>ARKHE-ZERO</b>VERIFICADO<br>51 / 49<br>SELLO CROMÁTICO</div></div><img class="qr" src="https://api.qrserver.com/v1/create-qr-code/?size=130x130&data=${encodeURIComponent(D.folio+'|'+D.sha256)}"></div><p style="text-align:center"><b>Valdovinos</b><br>Autor Humano • Dueño de la visión<br><small>Si el archivo cambia una letra, el hash cambia y el folio ya no coincide. Hasta 2099.</small></p></div></body></html>`;
-const b=new Blob([cert],{type:'text/html'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=D.folio+'-CERTIFICADO.html';a.click();}
+const cert=`<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${D.folio}</title><style>*{box-sizing:border-box}body{background:#050810;color:#fff;font-family:system-ui;margin:0;padding:12px}.cert{max-width:680px;margin:auto;background:linear-gradient(160deg,#0b1226,#1a0b2e,#0b1226);border:3px solid #d4af37;border-radius:20px;padding:22px}.fila{background:rgba(0,0,0,.35);border:1px solid #2a2a4a;border-radius:12px;padding:10px;margin:10px 0}.etiqueta{color:#ffd700;font-size:11px;letter-spacing:2px;font-weight:800}.valor{word-break:break-all}.huella{display:grid;grid-template-columns:repeat(8,1fr);gap:3px}.firma-box{text-align:center;border:1px solid #d4af37;border-radius:16px;padding:14px}.firma-box svg{width:280px;max-width:100%}</style></head><body><div class="cert"><h1 style="text-align:center">ARKHE-ZERO • CERTIFICADO V3</h1><div class="fila"><div class="etiqueta">FOLIO</div><div class="valor" style="color:#ffd700;font-size:20px">${D.folio}</div></div><div class="fila"><div class="etiqueta">SHA-256</div><div class="valor">${D.sha256}</div></div><div class="fila"><div class="etiqueta">ARCHIVO</div><div class="valor">${D.archivo} • ${D.tamano} bytes • ${D.fecha}</div></div><div class="fila"><div class="etiqueta">HUELLA OFFLINE</div><div class="huella">${huellaHTML(D.sha256)}</div></div><div class="firma-box"><div class="etiqueta">FIRMA DEL SOBERANO</div>${FIRMA}</div></div></body></html>`;
+const b=new Blob([cert],{type:'text/html'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=D.folio+'-CERTIFICADO-V3.html';a.click();}
 </script></body></html>
