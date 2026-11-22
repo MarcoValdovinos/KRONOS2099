@@ -1,4 +1,6 @@
 <div align="center">
+> [Read in English • Leer en Inglés](README_EN.md) • [Verificar en Vivo](https://marcovaldovinos.github.io/KRONOS2099/)
+
 
 > ## ❤️ AYUDAR A LA COMUNIDAD • SIN ESPERAR NADA A CAMBIO
 > Si estás atorado en Termux o GitHub, aquí te ayudamos. Si quieres ayudar a otro, bienvenido.
