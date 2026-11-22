@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 150">
+  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#00f0ff"/><stop offset="0.5" stop-color="#ffd700"/><stop offset="1" stop-color="#a855f7"/></linearGradient></defs>
+  <path d="M150 18 L165 38 L180 15 L195 38 L210 15 L225 38 L240 18 L232 48 L158 48 Z" fill="url(#g)"/>
+  <text x="20" y="95" font-family="Brush Script MT, cursive" font-size="68" fill="url(#g)" font-weight="bold">Valdovinos</text>
+  <path d="M15 105 C 80 135, 200 90, 280 115 C 330 128, 380 105, 405 95" fill="none" stroke="url(#g)" stroke-width="3" stroke-linecap="round"/>
+  <path d="M340 95 L 360 80 L 355 95 L 375 92" fill="none" stroke="#ffd700" stroke-width="2"/>
+  <text x="20" y="135" font-family="Arial" font-size="11" letter-spacing="5" fill="#ffd700">SYCRO • TOLUCA-GLOBAL • KRONOS2099</text>
+  <text x="340" y="135" font-family="Arial" font-size="10" fill="#00f0ff">51/49</text>
+</svg>
